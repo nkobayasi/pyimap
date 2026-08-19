@@ -1,6 +1,6 @@
 # pyimap
 
-Encode/Decode IMAP4 modified UTF-7.
+Encode/Decode IMAP modified UTF-7.
 
 ## Description
 
