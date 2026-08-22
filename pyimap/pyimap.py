@@ -17,6 +17,30 @@ def decode_imap_utf7(b:bytes) ->str:
         raise TypeError('should be bytes')
     return re.sub(r'&([A-Za-z0-9+,]+)-', repl, b.decode('ascii')).replace('&-', '&')
 
+class IMAP4String(object):
+    def __init__(self, value:str|bytes):
+        if isinstance(value, bytes):
+            self._value = decode_imap_utf7(value)
+        elif isinstance(value, str):
+            self._value = value
+        raise TypeError('should be str or bytes.')
+        
+    def __str__(self) ->str:
+        return self.as_str()
+        
+    def __bytes__(self) ->bytes:
+        return self.as_bytes()
+
+    @property
+    def value(self):
+        return self._value
+    
+    def as_str(self):
+        return self._value
+    
+    def as_bytes(self):
+        return encode_imap_utf7(self._value)
+
 def main():
     print(decode_imap_utf7(b'Draft'))
     print(decode_imap_utf7(b'&MMYwuTDI-'))
