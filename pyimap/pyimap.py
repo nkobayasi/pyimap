@@ -31,14 +31,21 @@ class IMAP4String(object):
     def __bytes__(self) ->bytes:
         return self.as_bytes()
 
+    def __eq__(self, value) ->bool:
+        if isinstance(value, str):
+            return self.as_str() == value
+        elif isinstance(value, bytes):
+            return self.as_bytes() == value
+        return self.as_str() == str(value)
+
     @property
-    def value(self):
+    def value(self) ->str:
         return self._value
     
-    def as_str(self):
+    def as_str(self) ->str:
         return self._value
     
-    def as_bytes(self):
+    def as_bytes(self) ->bytes:
         return encode_imap_utf7(self._value)
 
 def main():
