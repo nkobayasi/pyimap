@@ -26,7 +26,7 @@ class IMAP4String(object):
         raise TypeError('should be str or bytes.')
         
     def __repr__(self) ->str:
-        return '<{} "{}">'.format(self.__class__.__name__, self._value)
+        return '<{}: "{}">'.format(self.__class__.__name__, self._value)
 
     def __str__(self) ->str:
         return self.as_str()
