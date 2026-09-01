@@ -38,6 +38,13 @@ class IMAP4String(object):
             return self.as_bytes() == value
         return self.as_str() == str(value)
 
+    def __add__(self, other):
+        if isinstance(other, str):
+            return IMAP4String(self._value + other)
+        elif isinstance(other, bytes):
+            return IMAP4String(self._value + decode_imap_utf7(other))
+        return IMAP4String(self._value + str(other))
+
     @property
     def value(self) ->str:
         return self._value
