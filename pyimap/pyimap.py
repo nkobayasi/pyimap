@@ -1,3 +1,5 @@
+#!/usr/local/bin/python
+# -*- coding: utf8 -*-
 
 from __future__ import annotations
 import re
